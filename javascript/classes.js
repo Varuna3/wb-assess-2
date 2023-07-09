@@ -6,7 +6,11 @@
 //   bicycles might come from different manufacturers
 // - Bicycles come in different colors (ex.: red, silver, blue…)
 class Bicycle {
-  // Replace this with your code
+  constructor(color, manuf) {
+    this.numWheels = 2
+    this.manufacturer = manuf
+    this.color = color
+  }
 }
 
 // This User class is intended to be used in a web application where users can
@@ -20,12 +24,16 @@ class Bicycle {
 // match, it should return false.
 class User {
   constructor(username, password) {
-    this.username = username;
-    this.password = password;
+    this.username = username
+    this.password = password
   }
 
   processChangePassword(currentPassword, newPassword) {
-    // Replace this with your code
+    if (currentPassword === this.password) {
+      this.password = newPassword
+      return true
+    }
+    return false
   }
 }
 
@@ -39,22 +47,28 @@ class User {
 //   books are found, it should return an empty array.
 class Book {
   constructor(title, author) {
-    this.title = title;
-    this.author = author;
+    this.title = title
+    this.author = author
   }
 }
 
 class Library {
   constructor() {
-    this.books = [];
+    this.books = []
   }
 
   createAndAddBook(title, author) {
-    // Replace this with your code
+    this.books.push(new Book(title, author))
   }
 
   findBooksByAuthor(author) {
-    // Replace this with your code
+    let arr = []
+    this.books.forEach(e => {
+      if (e.author === author) {
+        arr.push(e)
+      }
+    })
+    return arr
   }
 }
 
@@ -76,17 +90,26 @@ class Library {
 //   - If the square is invalid, return undefined
 class Rectangle {
   constructor(length, width) {
-    this.length = length;
-    this.width = width;
+    this.length = length
+    this.width = width
   }
 
   getArea() {
-    return this.length * this.width;
+    return this.length * this.width
   }
 }
 
 class Square extends Rectangle {
-  // Replace this with your code
+  constructor(length) {
+    super(length, length)
+  }
+
+  getArea() {
+    if (this.length === this.width) {
+      return this.length * this.width
+    }
+    return undefined
+  }
 }
 
-export { Bicycle, Book, Library, Rectangle, Square, User };
+export { Bicycle, Book, Library, Rectangle, Square, User }
